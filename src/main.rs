@@ -12,12 +12,17 @@ struct WordData {
 }
 
 fn main() {
-    let prefix = "hel";
-
     let mut words = parse_word_data(WORD_LIST, WORD_FREQ).expect("The word data is invalid");
     words.sort_by(|a, b| a.lemma.cmp(b.lemma));
 
-    let word = get_word(prefix, &words);
+    loop {
+        ask_word(&words).expect("An error occured");
+    }
+}
+
+fn ask_word(words: &[WordData]) -> Result<(), inquire::InquireError> {
+    let prefix = inquire::Text::new("Enter the prefix").prompt()?;
+    let word = get_word(&prefix, words);
 
     println!("Prefix: {}", prefix);
     match word {
@@ -28,6 +33,8 @@ fn main() {
             println!("No word found");
         }
     }
+
+    Ok(())
 }
 
 fn parse_word_data(

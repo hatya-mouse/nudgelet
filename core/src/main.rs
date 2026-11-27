@@ -3,8 +3,8 @@ mod word;
 use crate::word::get_word;
 use std::num::ParseIntError;
 
-const WORD_LIST: &'static str = include_str!("../word_list.txt");
-const WORD_FREQ: &'static str = include_str!("../word_freq.txt");
+const WORD_LIST: &'static str = include_str!("../../word_list.txt");
+const WORD_FREQ: &'static str = include_str!("../../word_freq.txt");
 
 struct WordData {
     lemma: &'static str,
